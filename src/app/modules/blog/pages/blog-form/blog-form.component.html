@@ -1,0 +1,10 @@
+<form>
+    <input type="text" placeholder="title" [formControl]="title"><br>
+    <input type="text" placeholder="description" [formControl]="description"><br>
+    <input type="text" placeholder="author" [formControl]="author"><br>
+    <ng-container formArrayName="comments">
+        <div class="input-group mb-3" *ngFor="let comment of comments.controls; index as i">
+            <input [formControlName]="i" placeholder="comment" class="form-control">
+        </div>
+    </ng-container>
+</form>

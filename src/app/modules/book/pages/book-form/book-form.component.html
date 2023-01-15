@@ -1,0 +1,9 @@
+<form>
+    <input type="text" placeholder="name" [formControl]="name">
+    <ng-container formArrayName="authors">
+        <div class="input-group mb-3" *ngFor="let author of authors.controls; index as i">
+            <input [formControlName]="i" placeholder="author" class="form-control">
+        </div>
+    </ng-container>
+    <input type="text" placeholder="isbn" [formControl]="isbn">
+</form>
