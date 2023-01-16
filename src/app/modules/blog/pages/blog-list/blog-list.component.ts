@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Blog } from '../../models/blog';
 import { BlogService } from '../../services/blog.service';
 
@@ -17,4 +18,7 @@ export class BlogListComponent  implements OnInit {
     this.blogs = this.blogService.getBlogs();
   }
 
+  deleteAllBlogs($event: any){
+    this.blogs = $event
+  }
 }

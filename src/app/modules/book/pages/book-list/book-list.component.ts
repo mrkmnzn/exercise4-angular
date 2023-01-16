@@ -19,4 +19,8 @@ export class BookListComponent implements OnInit{
     this.books = this.bookService.getBooks()
   }
 
+  deleteAllBooks($event: any){
+    this.books = $event
+  }
+
 }

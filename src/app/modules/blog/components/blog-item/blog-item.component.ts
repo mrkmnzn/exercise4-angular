@@ -10,4 +10,6 @@ export class BlogItemComponent {
 
   @Input() blogs: any | undefined;
 
+  
+
 }
