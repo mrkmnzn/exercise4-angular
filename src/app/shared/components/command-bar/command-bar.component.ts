@@ -19,7 +19,4 @@ export class CommandBarComponent implements OnInit{
   deleteAll(){
       this.books.splice(0,this.books.length)
   }
-
-  
-
 }
