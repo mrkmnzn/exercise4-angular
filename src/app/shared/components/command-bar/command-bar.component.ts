@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Blog } from 'src/app/modules/blog/models/blog';
+import { BlogService } from 'src/app/modules/blog/services/blog.service';
 import { Book } from 'src/app/modules/book/models/book';
 import { BookService } from 'src/app/modules/book/service/book.service';
 
@@ -10,13 +13,21 @@ import { BookService } from 'src/app/modules/book/service/book.service';
 export class CommandBarComponent implements OnInit{
 
   books: Book[] = [];
+  blogs: Blog[] = [];
 
-  constructor(private bookService:BookService){}
+  constructor(private bookService:BookService,
+    private blogService:BlogService,
+    private route: ActivatedRoute){}
   ngOnInit(){
     this.books = this.bookService.getBooks();
+    this.blogs = this.blogService.getBlogs();
   }
 
-  deleteAll(){
+  deleteAllBooks(){
       this.books.splice(0,this.books.length)
+  }
+
+  deleteAllBlogs(){
+    this.blogs.splice(0,this.blogs.length)
   }
 }

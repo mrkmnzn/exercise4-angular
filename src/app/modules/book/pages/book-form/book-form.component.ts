@@ -1,38 +1,46 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl } from '@angular/forms';
-import { Book } from '../../models/book';
-import { BookService } from '../../service/book.service';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
+
 
 @Component({
   selector: 'app-book-form',
   templateUrl: './book-form.component.html',
   styleUrls: ['./book-form.component.scss']
 })
-export class BookFormComponent implements OnInit{
+export class BookFormComponent implements OnInit {
 
-  books: Book[] = [];
+  bookForm: FormGroup;
 
-  constructor(private bookService:BookService){}
-
-  ngOnInit(){
-    this.books = this.bookService.getBooks()
+  constructor() {
+    this.bookForm = new FormGroup({
+      id: new FormControl(),
+      name: new FormControl(),
+      authors: new FormControl(),
+      isbn: new FormControl(),
+    })
+   }
+  ngOnInit() {
+    
   }
 
-  name = new FormControl;
-  authors = new FormArray([
-  new FormControl(null)
-  ]);
-  isbn = new FormControl;
 
 
-add(){
-  this.authors.push(new FormControl())
-}
+  
+  addBook() {
+      // this.peopleArray.push(this.createBookGroup());
+    }
 
-edit(index: number){
+  onSubmit() {
+      console.log(this.bookForm?.value);
+    }
 
-}
+  removeBook(index: number) {
+      this.peopleArray.removeAt(index);
+    }
 
+  get peopleArray() {
+      return(<FormArray> this.bookForm?.get('people'));
+  }
 
 }
 

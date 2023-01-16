@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormArray, FormControl } from '@angular/forms';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-blog-form',
@@ -8,12 +8,15 @@ import { FormArray, FormControl } from '@angular/forms';
 })
 export class BlogFormComponent {
 
-  title = new FormControl;
-  description = new FormControl;
-  author = new FormControl
-  comments = new FormArray([
-    new FormControl(null),
-    new FormControl(null),
-    new FormControl(null),
-  ])
+  blogForm: FormGroup;
+
+  constructor() {
+    this.blogForm = new FormGroup({
+      id: new FormControl(),
+      title:new FormControl(),
+      description:new FormControl(),
+      author:new FormControl(),
+      comments:new FormControl(),
+    })
+   }
 }

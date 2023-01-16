@@ -3,6 +3,9 @@
     Name: {{books.name}} <br/>
     Authors: {{books.authors}} <br/>
     Isbn: {{books.isbn}} <br/>
-    <a routerLink="form"> <button>Edit</button> </a>
-    <button>Delete</button>
+    <div class="d-grid gap-2 d-md-block">
+        <button class="btn btn-primary" type="button" (click)="edit()">Edit</button> &nbsp;
+        <button class="btn btn-primary" type="button">Delete</button>
+    </div>
+    <br>
 </div>
