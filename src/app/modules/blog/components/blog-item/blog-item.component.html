@@ -1,13 +1,13 @@
 <div>
-    Id: {{blogs.id}} <br/>
-    Title: {{blogs.title}} <br/>
-    Description: {{blogs.description}} <br/>
-    Authors: {{blogs.authors}} <br/>
-    Comments: {{blogs.comments}} <br/>
+    Id: {{blog.id}} <br/>
+    Title: {{blog.title}} <br/>
+    Description: {{blog.description}} <br/>
+    Authors: {{blog.authors}} <br/>
+    Comments: {{blog.comments}} <br/>
 
     <div class="d-grid gap-2 d-md-block">
-        <a routerLink="form"> <button class="btn btn-primary" type="button">Edit</button> </a> &nbsp;
-        <button class="btn btn-primary" type="button">Delete</button>
+        <button class="btn btn-primary" (click)="executeAction(blog,'edit')" type="button" >Edit</button> &nbsp;
+        <button class="btn btn-primary" (click)="executeAction(blog,'delete')" type="button">Delete</button>
     </div>
     <br>
 

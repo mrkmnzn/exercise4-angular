@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BookFormComponent } from './modules/book/pages/book-form/book-form.component';
 
 const routes: Routes = [
 
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path: 'user',
     loadChildren: () => import('./modules/user/user.module').then(m => m.UserModule)
+  },
+  {
+    path: 'form/:id',
+    component: BookFormComponent
   }
 ];
 

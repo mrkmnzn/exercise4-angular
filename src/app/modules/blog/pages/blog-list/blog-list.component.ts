@@ -8,17 +8,38 @@ import { BlogService } from '../../services/blog.service';
   templateUrl: './blog-list.component.html',
   styleUrls: ['./blog-list.component.scss']
 })
-export class BlogListComponent  implements OnInit {
+export class BlogListComponent implements OnInit{
 
-  blogs: Blog[] = [];
+  blogs:Blog[] = [];
 
-  constructor(private blogService:BlogService){}
+  constructor(private blogService:BlogService,
+    private router: Router){}
 
-  ngOnInit(){
-    this.blogs = this.blogService.getBlogs();
-  }
+    ngOnInit(){
+      this.blogs = this.blogService.getBlogs()
+    }
 
-  deleteAllBlogs($event: any){
-    this.blogs = $event
-  }
+    editOrDelete(event: {blog: Blog, action: string}){
+      switch(event.action){
+        case 'delete':
+        this.blogs.forEach((element, index) =>{
+            if(element.id == event.blog.id) this.blogs.splice(index,1)
+        });
+        break;
+
+        case 'edit':
+          this.router.navigate(['form/',event.blog.id])
+          break;
+      }
+    }
+
+    addOrDelete(event: {blog:Blog, action: string}){
+      switch(event.action){
+        case 'deleteAll':
+          this.blogs.splice(0);
+      }
+    }
+
 }
+
+

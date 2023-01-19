@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Blog } from '../../models/blog';
 
 @Component({
@@ -8,7 +8,13 @@ import { Blog } from '../../models/blog';
 })
 export class BlogItemComponent {
 
-  @Input() blogs: any | undefined;
+  @Input() blog: any | undefined;
+
+  @Output () actionEmmiter = new EventEmitter<{blog:Blog, action: string}>();
+
+  executeAction(blog:Blog, action: string){
+    this.actionEmmiter.emit({blog, action})
+  }
 
   
 

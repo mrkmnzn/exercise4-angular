@@ -21,7 +21,7 @@ export class BookService {
       isbn: '987654321X',
     },
     {
-      id : 1,
+      id : 3,
       name: 'Book3',
       authors: ['author5', 'author6'],
       isbn: '678912345X',

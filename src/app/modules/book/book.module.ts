@@ -19,7 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     BookRoutingModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ]
 })
 export class BookModule { }

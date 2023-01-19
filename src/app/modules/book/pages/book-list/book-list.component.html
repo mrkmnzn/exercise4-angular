@@ -1,2 +1,2 @@
-<app-book-item *ngFor="let book of books" [books]="book"></app-book-item>
-<app-command-bar (newBook)="deleteAllBooks($event)"></app-command-bar>
+<app-book-item *ngFor="let book of books" [book]="book" (actionEmmiter)="editOrDelete($event)"></app-book-item>
+<app-command-bar (Books)="addOrDelete($event)"></app-command-bar>

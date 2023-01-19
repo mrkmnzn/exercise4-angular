@@ -1,2 +1,2 @@
-<app-blog-item  *ngFor="let blog of blogs" [blogs]="blog"></app-blog-item>
-<app-command-bar (newBlog)="deleteAllBlogs($event)"></app-command-bar>
+<app-blog-item *ngFor="let blog of blogs" [blog]="blog" (actionEmmiter)="editOrDelete($event)"></app-blog-item>
+<app-command-bar (Blogs)="addOrDelete($event)"></app-command-bar>

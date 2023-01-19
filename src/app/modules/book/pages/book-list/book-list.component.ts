@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Book } from '../../models/book';
 import { BookService } from '../../service/book.service';
 
@@ -11,7 +12,8 @@ export class BookListComponent implements OnInit{
 
   books:Book[] = [];
 
-  constructor(private bookService:BookService){
+  constructor(private bookService:BookService,
+    private router: Router){
 
   }
 
@@ -19,8 +21,24 @@ export class BookListComponent implements OnInit{
     this.books = this.bookService.getBooks()
   }
 
-  deleteAllBooks($event: any){
-    this.books = $event
+  editOrDelete(event: {book: Book, action: string}){
+    switch(event.action){
+      case 'delete': 
+        this.books.forEach((element, index) => {
+          if(element.id == event.book.id) this.books.splice(index,1)
+        });
+        break;
+      case 'edit':
+        this.router.navigate(['form/',event.book.id])
+        break;
+    }
+  }
+
+  addOrDelete(event: {book: Book, action: string}){
+    switch(event.action){
+      case 'deleteAll':
+        this.books.splice(0);
+    }
   }
 
 }

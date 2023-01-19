@@ -1,5 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Blog } from 'src/app/modules/blog/models/blog';
 import { BlogService } from 'src/app/modules/blog/services/blog.service';
 import { Book } from 'src/app/modules/book/models/book';
@@ -10,28 +10,28 @@ import { BookService } from 'src/app/modules/book/service/book.service';
   templateUrl: './command-bar.component.html',
   styleUrls: ['./command-bar.component.scss']
 })
-export class CommandBarComponent implements OnInit{
+export class CommandBarComponent{
 
+  @Input () book: any | undefined;
+  @Output () Books = new EventEmitter<{book: Book, action: string}>()
+  @Input () blog: any | undefined;
+  @Output () Blogs = new EventEmitter<{blog: Blog, action: string}>()
 
-  @Output() newBooks = new EventEmitter<Book[]>();
-  @Output() newBlogs = new EventEmitter<Blog[]>();
+  constructor(private router: Router){}
 
-  books: Book[] = [];
-  blogs: Blog[] = [];
-
-  constructor(private bookService:BookService,
-    private blogService:BlogService){}
-    
-  ngOnInit(){
-    this.books = this.bookService.getBooks();
-    this.blogs = this.blogService.getBlogs();
+  bookAction(book: Book, action: string){
+    this.Books.emit({book, action})
   }
 
-  deleteAllBooks(){
-    this.newBooks.emit(this.books.splice(0,this.books.length))
+  blogAction(blog: Blog, action: string){
+    this.Blogs.emit({blog, action})
   }
 
-  deleteAllBlogs(){
-    this.newBlogs.emit(this.blogs.splice(0,this.blogs.length))
+  addBook(){
+    this.router.navigate(['book/form'])
+  }
+
+  addBlog(){
+    this.router.navigate(['blog/form'])
   }
 }

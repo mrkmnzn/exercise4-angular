@@ -1,11 +1,12 @@
 <div>
-    Id: {{books.id}} <br/>
-    Name: {{books.name}} <br/>
-    Authors: {{books.authors}} <br/>
-    Isbn: {{books.isbn}} <br/>
-    <div class="d-grid gap-2 d-md-block">
-        <button class="btn btn-primary" type="button" (click)="edit()">Edit</button> &nbsp;
-        <button class="btn btn-primary" type="button">Delete</button>
+    Id: {{book.id}} <br/>
+    Name: {{book.name}} <br/>
+    Authors: {{book.authors}} <br/>
+    Isbn: {{book.isbn}} <br/>
+
+    <div class="d-grid gap-2 d-md-block" >
+        <button class="btn btn-primary" (click)="executeAction(book,'edit')" type="button" >Edit</button> &nbsp;
+        <button class="btn btn-primary" (click)="executeAction(book,'delete')" type="button">Delete</button>
     </div>
     <br>
 </div>
