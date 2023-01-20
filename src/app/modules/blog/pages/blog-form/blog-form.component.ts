@@ -65,7 +65,7 @@ export class BlogFormComponent implements OnInit{
       this.router.navigate(['blog'])
     }else{
       this.blogs.push(this.blogForm.value)
-
+      this.router.navigate(['blog'])
     }
   }
 }

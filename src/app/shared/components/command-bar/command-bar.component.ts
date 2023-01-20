@@ -1,37 +1,45 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Blog } from 'src/app/modules/blog/models/blog';
-import { BlogService } from 'src/app/modules/blog/services/blog.service';
 import { Book } from 'src/app/modules/book/models/book';
-import { BookService } from 'src/app/modules/book/service/book.service';
+import { BookListComponent } from 'src/app/modules/book/pages/book-list/book-list.component';
 
 @Component({
   selector: 'app-command-bar',
   templateUrl: './command-bar.component.html',
   styleUrls: ['./command-bar.component.scss']
 })
-export class CommandBarComponent{
+export class CommandBarComponent implements OnInit{
 
-  @Input () book: any | undefined;
-  @Output () Books = new EventEmitter<{book: Book, action: string}>()
-  @Input () blog: any | undefined;
-  @Output () Blogs = new EventEmitter<{blog: Blog, action: string}>()
+  @Output () Books = new EventEmitter<{action: string, source: string}>()
+  @Output () Blogs = new EventEmitter<{action: string, source: string}>()
+  activeRoute: string
+  source: any
 
-  constructor(private router: Router){}
+  constructor(private router: Router,
+    private route: ActivatedRoute){}
+  
+    ngOnInit(): void {
 
-  bookAction(book: Book, action: string){
-    this.Books.emit({book, action})
-  }
+      this.activeRoute = this.route.snapshot.component.name
+      console.log(this.activeRoute)
 
-  blogAction(blog: Blog, action: string){
-    this.Blogs.emit({blog, action})
-  }
 
-  addBook(){
-    this.router.navigate(['book/form'])
-  }
+    }
 
-  addBlog(){
-    this.router.navigate(['blog/form'])
-  }
+    delete(){
+      if(this.activeRoute ==="BookListComponent"){
+        this.Books.emit({action: 'delete', source: 'book'})
+      }else{
+        this.Blogs.emit({action: 'delete', source:'blog'})
+      }
+    }
+
+    add(){
+      if(this.activeRoute ==="BookListComponent"){
+        this.router.navigate(['book/form'])
+      }else{
+        this.router.navigate(['blog/form'])
+      }
+    }
 }

@@ -34,10 +34,12 @@ export class BookListComponent implements OnInit{
     }
   }
 
-  addOrDelete(event: {book: Book, action: string}){
+  addOrDelete(event: {action: string, source: string}){
     switch(event.action){
-      case 'deleteAll':
-        this.books.splice(0);
+      case 'delete':
+        if(event.source === 'book'){
+          this.books.splice(0);
+        }
     }
   }
 
